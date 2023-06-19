@@ -17,7 +17,8 @@ app.set("trust proxy", 1);
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://a6--resonant-quokka-5a61c8.netlify.app",
+    // origin: "http://localhost:3000",
   })
 );
 app.use(
