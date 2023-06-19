@@ -26,6 +26,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     secure: true,
+    proxy: true,
   })
 );
 
