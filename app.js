@@ -25,6 +25,7 @@ app.use(
     secret: "any string",
     resave: false,
     saveUninitialized: true,
+    secure: true,
   })
 );
 
