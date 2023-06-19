@@ -1,14 +1,17 @@
+import * as usersDao from "./users-dao.js";
 import people from "./users.js";
 let users = people;
 
 function AuthenticationController(app) {
-  const login = (req, res) => {
+  const login = async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     if (username && password) {
-      const user = users.find(
-        (user) => user.username === username && user.password === password
-      );
+      // const user = users.find(
+      //   (user) => user.username === username && user.password === password
+      // );
+      const user = await usersDao.findUserByCredentials(username, password);
+
       if (user) {
         req.session["currentUser"] = user;
         res.json(user);
@@ -19,14 +22,16 @@ function AuthenticationController(app) {
       res.sendStatus(403);
     }
   };
-  const register = (req, res) => {
-    const user = users.find((user) => user.username === req.body.username);
+  const register = async (req, res) => {
+    // const user = users.find((user) => user.username === req.body.username);
+    const user = await usersDao.findUserByUsername(req.body.username);
     if (user) {
       res.sendStatus(403);
       return;
     }
-    const newUser = { ...req.body, _id: new Date().getTime() + "" };
-    users.push(newUser);
+    // const newUser = { ...req.body, _id: new Date().getTime() + "" };
+    // users.push(newUser);
+    const newUser = await usersDao.createUser(req.body);
     req.session["currentUser"] = newUser;
     res.json(newUser);
   };
