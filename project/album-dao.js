@@ -11,3 +11,6 @@ export const createLike = (id, userId) =>
 
 export const findLikesForUser = (userId) =>
   likesModel.find({ user: userId }).populate("album").exec();
+
+export const findLikesForAlbum = (albumId) =>
+  likesModel.find({ album: albumId }).populate("user").exec();

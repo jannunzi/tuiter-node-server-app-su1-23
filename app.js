@@ -3,6 +3,7 @@ import UsersController from "./users/users-controller.js";
 import AuthenticationController from "./users/auth-controller.js";
 import AlbumController from "./project/album-controller.js";
 import TuitsController from "./tuits/tuits-controller.js";
+import FollowsController from "./project/follows-controller.js";
 import express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -49,6 +50,7 @@ UsersController(app);
 AuthenticationController(app);
 TuitsController(app);
 AlbumController(app);
+FollowsController(app);
 
 const port = process.env.PORT || 4000;
 app.listen(4000);
